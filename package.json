@@ -1,0 +1,17 @@
+{
+  "name": "pdf-compressor-checks",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:core": "swift test",
+    "test:ui": "bash scripts/test-ui.sh",
+    "build": "bash scripts/build-app.sh",
+    "start": "bash scripts/run.sh",
+    "release": "bash scripts/release.sh",
+    "release:preview": "bash scripts/release.sh --unsigned"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
+  }
+}

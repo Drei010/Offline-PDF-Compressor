@@ -1,0 +1,12 @@
+.DS_Store
+.build/
+build/
+dist/
+.swiftpm/
+node_modules/
+playwright-report/
+test-results/
+test-screenshots/
+*.xcresult
+xcuserdata/
+Tests/Fixtures/*.pdf
