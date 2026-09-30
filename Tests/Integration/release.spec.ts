@@ -42,6 +42,14 @@ test('built release archives retain signatures, architectures, and matching chec
     const info = JSON.parse(execFileSync('/usr/bin/plutil', ['-convert', 'json', '-o', '-', path.join(app, 'Contents/Info.plist')], { encoding: 'utf8' }));
     expect(info.CFBundleShortVersionString).toBe(manifest.version);
     expect(info.CFBundleVersion).toBe(manifest.build);
+    expect(info.CFBundleIconFile).toMatch(/^AppIcon(?:\.icns)?$/);
+    for (const [source, filename] of [
+      ['Resources/AppIcon.icns', 'AppIcon.icns'],
+      ['Sources/PDFCompressor/Resources/MenuBarIconTemplate.png', 'MenuBarIconTemplate.png'],
+      ['Sources/PDFCompressor/Resources/AppIconPreview.png', 'AppIconPreview.png'],
+    ]) {
+      expect(readFileSync(path.join(app, 'Contents/Resources', filename))).toEqual(readFileSync(source));
+    }
     execFileSync('/usr/bin/codesign', ['--verify', '--strict', app]);
     const { stderr: signature } = await promisify(execFile)('/usr/bin/codesign', ['-d', '--verbose=4', app]);
     expect(signature).toMatch(/flags=0x[\da-f]+\([^)]*\bruntime\b[^)]*\)/i);

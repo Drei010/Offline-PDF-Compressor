@@ -9,7 +9,8 @@ struct MenuBarView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             HStack(spacing: 10) {
-                Image(systemName: "doc.zipper").font(.title2).foregroundStyle(accent)
+                Image(nsImage: AppResources.appIcon).resizable().scaledToFit().frame(width: 36, height: 36)
+                    .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 2) {
                     Text("PDF Compressor").font(.headline)
                     Text(state.showingSettings ? "Your preferences" : "Smaller files. All on your Mac.")

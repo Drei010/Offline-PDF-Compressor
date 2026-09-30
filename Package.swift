@@ -11,7 +11,7 @@ let package = Package(
     ],
     targets: [
         .target(name: "PDFCompressorCore"),
-        .executableTarget(name: "PDFCompressor", dependencies: ["PDFCompressorCore"]),
+        .executableTarget(name: "PDFCompressor", dependencies: ["PDFCompressorCore"], resources: [.process("Resources")]),
         .executableTarget(name: "PDFCompressorCLI", dependencies: ["PDFCompressorCore"]),
         .testTarget(name: "PDFCompressorCoreTests", dependencies: ["PDFCompressorCore", "PDFCompressor"])
     ],

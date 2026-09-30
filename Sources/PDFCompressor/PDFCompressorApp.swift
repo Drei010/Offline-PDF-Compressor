@@ -33,8 +33,10 @@ struct PDFCompressorApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var delegate
 
     var body: some Scene {
-        MenuBarExtra("PDF Compressor", systemImage: "doc.zipper") {
+        MenuBarExtra {
             MenuBarView(state: delegate.state)
+        } label: {
+            Image(nsImage: AppResources.menuBarIcon).accessibilityLabel("PDF Compressor")
         }
         .menuBarExtraStyle(.window)
     }
